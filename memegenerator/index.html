@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <canvas id="memeCanvas" width="500" height="400" crossOrigin="Anonymous"></canvas>
+    ENTER TEXT: <input type="text" name="memeText" id="meme-text">
+    <input type="submit" value="Add Text" onclick="addText()"> 
+    <button onclick="deleteText()">Delete All Text</button>
+    <button onclick="downloadImg()">Download image</button>
+    <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.4.3/fabric.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
