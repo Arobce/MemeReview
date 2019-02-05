@@ -7,6 +7,7 @@ setBackgroundImage();
 function setBackgroundImage(){
     fabric.Image.fromURL(url, function(img){
         // add background image
+        img.crossOrigin = "Anonymous";
         canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
             scaleX: canvas.width / img.width,
             scaleY: canvas.height / img.height
@@ -50,4 +51,8 @@ function downloadImg(){
     else {
         window.open(canvas.toDataURL('png'));
     }
+
+    // $("#memeCanvas").get(0).toBlob(function(blob){
+    //     saveAs(blob,"myIMG.png");
+    // })
 }

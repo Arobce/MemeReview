@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2019 at 07:57 AM
+-- Generation Time: Feb 04, 2019 at 06:27 PM
 -- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,18 +34,19 @@ CREATE TABLE `meme` (
   `user_id` int(11) DEFAULT NULL,
   `url` varchar(200) DEFAULT NULL,
   `likes` int(11) DEFAULT NULL,
-  `dislikes` int(11) DEFAULT NULL
+  `dislikes` int(11) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `meme`
 --
 
-INSERT INTO `meme` (`meme_id`, `name`, `user_id`, `url`, `likes`, `dislikes`) VALUES
-(1, 'AMERICAAAA!!!!', 3, 'assets\\MemesForApis\\meme1.jpg', 20, 5),
-(2, 'Yup..', 3, 'assets\\MemesForApis\\meme2.jpg', 985, 16),
-(3, 'Really was like that', 4, 'assets\\MemesForApis\\meme3.jpg', 586, 39),
-(4, 'What happened here?', 4, 'assets\\MemesForApis\\meme4.jpg', 1003, 5);
+INSERT INTO `meme` (`meme_id`, `name`, `user_id`, `url`, `likes`, `dislikes`, `date_created`) VALUES
+(1, 'AMERICAAAA!!!!', 3, 'assets\\MemesForApis\\meme1.jpg', 20, 5, '2019-02-04 17:25:20'),
+(2, 'Yup..', 3, 'assets\\MemesForApis\\meme2.jpg', 985, 16, '2019-02-04 17:25:20'),
+(3, 'Really was like that', 4, 'assets\\MemesForApis\\meme3.jpg', 586, 39, '2019-02-04 17:25:20'),
+(4, 'What happened here?', 4, 'assets\\MemesForApis\\meme4.jpg', 100, 5, '2019-02-04 17:25:20');
 
 -- --------------------------------------------------------
 
