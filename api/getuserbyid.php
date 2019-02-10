@@ -27,11 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $json_obj = json_decode($json_str);
 
-    $email = $json_obj->email;
-    $password = $json_obj->password;
+    $id = $json_obj->id;
 
     /*============ Check if records exists ===========*/
-    $sql = "SELECT id,name,email FROM users WHERE email='".$email."'AND password='".$password."';";
+    $sql = "SELECT id,name,email,image_url FROM users WHERE id=".$id;
     $q = mysqli_query($conn,$sql);
     //Check if sucess
     if($q){
@@ -41,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $responseArray = array('responseCode'=>'200',
             'id'=>$row[0],
             'name'=>$row[1],
-            'email'=>$row[2]);
+            'email'=>$row[2],
+            'imageUrl'=>$row[3]);
         
         }else{
             $responseArray = array('responseCode'=>'404','message'=>'Record not found');

@@ -27,26 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $json_obj = json_decode($json_str);
 
+    $userId = $json_obj->id;
+    $name = $json_obj->name;
     $email = $json_obj->email;
-    $password = $json_obj->password;
+    $url = $json_obj->url;
 
-    /*============ Check if records exists ===========*/
-    $sql = "SELECT id,name,email FROM users WHERE email='".$email."'AND password='".$password."';";
-    $q = mysqli_query($conn,$sql);
+    /*============ Save Data ===========*/
+    $sql = "UPDATE users SET name='".$name."', email='".$email."', image_url='".$url."' WHERE id=".$userId.";";
     //Check if sucess
-    if($q){
-        $row=mysqli_fetch_row($q);
-        if(isset($row[0])){
+    if(mysqli_query($conn,$sql)){
 
-            $responseArray = array('responseCode'=>'200',
-            'id'=>$row[0],
-            'name'=>$row[1],
-            'email'=>$row[2]);
-        
-        }else{
-            $responseArray = array('responseCode'=>'404','message'=>'Record not found');
-        }
-
+        $responseArray = array('responseCode'=>'200','message'=>'Record edited sucessfully');
+    
     }else{
     
         $responseArray = array('responseCode'=>'500','message'=>mysqli_error($conn));

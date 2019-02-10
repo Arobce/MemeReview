@@ -27,26 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $json_obj = json_decode($json_str);
 
-    $email = $json_obj->email;
-    $password = $json_obj->password;
+    $memeId = $json_obj->memeId;
+    $action = $json_obj->action;
 
-    /*============ Check if records exists ===========*/
-    $sql = "SELECT id,name,email FROM users WHERE email='".$email."'AND password='".$password."';";
-    $q = mysqli_query($conn,$sql);
+    /*============ Like/Dislike ===========*/
+    if($action=='like'){
+        $sql = "UPDATE meme SET likes=likes+1 where meme_id =".$memeId.";";
+    }else{
+        $sql = "UPDATE meme SET dislikes=dislikes+1 where meme_id =".$memeId.";";
+    }
     //Check if sucess
-    if($q){
-        $row=mysqli_fetch_row($q);
-        if(isset($row[0])){
+    if(mysqli_query($conn,$sql)){
 
-            $responseArray = array('responseCode'=>'200',
-            'id'=>$row[0],
-            'name'=>$row[1],
-            'email'=>$row[2]);
-        
+        if($action=='like'){
+            $responseArray = array('responseCode'=>'200','message'=>'Liked sucessfully');
         }else{
-            $responseArray = array('responseCode'=>'404','message'=>'Record not found');
+            $responseArray = array('responseCode'=>'200','message'=>'Disliked sucessfully');
         }
 
+    
     }else{
     
         $responseArray = array('responseCode'=>'500','message'=>mysqli_error($conn));
