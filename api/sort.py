@@ -23,8 +23,7 @@ def main(n):
     cur.execute('select * from meme')
     memes = list(cur.fetchall())
     memes.sort(key=a, reverse=True)
-    sorted_memes = {}
-    i = 0
+    sorted_memes = []
     for meme in memes:
         json_meme = {
             "meme_id": meme[0],
@@ -36,8 +35,7 @@ def main(n):
             "date_created": meme[6]
 
         }
-        sorted_memes[i] = json_meme
-        i = i + 1
+        sorted_memes.append(json_meme)
     return jsonify(sorted_memes)
 
 
